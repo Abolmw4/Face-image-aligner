@@ -6,9 +6,9 @@ import os
 
 conf = load_json()
 
-# Initialize dlib detectors
+
 DETECTOR = dlib.get_frontal_face_detector()
-PREDICTOR = dlib.shape_predictor(conf.get("model_path"))  # Download from dlib.net
+PREDICTOR = dlib.shape_predictor(conf.get("model_path"))
 
 @caculate_execution_time
 def align_face(image):
@@ -27,6 +27,7 @@ def align_face(image):
     # Extract left and right eye corners (landmarks 36, 45)
     left_eye = landmarks[36]
     right_eye = landmarks[45]
+    del landmarks
     
     # Calculate eye center and angle
     eye_center = (

@@ -1,5 +1,7 @@
 {
     "dataset_dir":"/home/app/alignment/dataset",
     "result_path":"/home/app/alignment/dataset/aligned_result",
+    "ip":"0.0.0.0",
+    "port":8081,
     "model_path":"/home/app/alignment/models/shape_predictor_68_face_landmarks.dat"
 }

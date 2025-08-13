@@ -1,10 +1,9 @@
-# Use official Flink base image
 FROM ubuntu:rolling
 
 # Switch to root for installations
 USER root
 
-# Install Python 3.10, GUI dependencies, and development tools
+# Install Python 3.13, GUI dependencies, and development tools
 RUN apt-get update -y && \
     apt-get install -y \
     software-properties-common \
@@ -36,7 +35,8 @@ RUN /home/venv/bin/pip install --no-cache-dir \
     matplotlib \
     fastapi-cli \
     dlib \
-    scipy
+    scipy \
+    requests
 
 # Install VS Code dependencies and VS Code itself
 RUN apt-get update -y && \

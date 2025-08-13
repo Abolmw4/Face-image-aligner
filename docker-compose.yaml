@@ -1,14 +1,14 @@
 version: '3.8'
 services:
   alignment:
-    image: ubuntu_vscode_opencv_dlib:v2.0
+    image: ubuntu_vscode_opencv_dlib:v2.5
     command: tail -f /dev/null
     working_dir: /home/app
     ports:
       - "8081:8081"
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
-      - /home/abolfazl/Documents/align_project:/home/app/alignment
+      - /home/abolfazl/Documents/face_aligner:/home/app/alignment
     environment:
       DISPLAY: ${DISPLAY}
     networks:
