@@ -109,6 +109,23 @@ class TestFaceAlignment(unittest.TestCase):
         cv2.imshow("result.png", aligned_image)
         cv2.waitKey(0)
         cv2.destroyAllWindows()
+    
+    def test_request_response_post_list_test(self):
+        import requests
+        from utils.util import serialize, deserialize, load_json
+        import json
         
+        conf = load_json()
+        IP="0.0.0.0"
+        PORT=5678
+        
+        serialized_images = [serialize(cv2.imread(os.path.join(conf["dataset_dir"], item))) for item in os.listdir(conf["dataset_dir"])]
+        pyload = {"image": serialized_images}
+        result = requests.post('http://'+IP+':'+str(PORT)+'/align', json=pyload)
+        print(result.json())
+        
+        
+        
+    
 if __name__ == '__main__':
     unittest.main()

@@ -33,7 +33,7 @@ def deserialize(img_base64) -> np.ndarray:
     return img_restored
 
 
-def serialize(img: np.ndarray) -> bytes:
+def serialize(img: np.ndarray) -> str:
     
     _, buffer = cv2.imencode('.png', img) # Encode image to PNG (or JPEG) bytes    
     img_base64 = base64.b64encode(buffer).decode('utf-8') # Convert bytes to base64 string

@@ -14,16 +14,19 @@ async def get_info():
 
 @router.post('/align')
 async def alignment_process(Item: RequestBody):
-    image_list: List[np.ndarray]
     if isinstance(Item.image, list):
-        for item in Item:
-            unaligned_img = deserialize(item.image)
-            aligned_face = align_face(unaligned_img)
-            image_list.append(serialize(aligned_face))
+        image_list: List[np.ndarray] = []
+        images = Item.image
+        for item in images:
+            try:
+                unaligned_img = deserialize(item)
+                aligned_face = align_face(unaligned_img)
+                image_list.append(serialize(aligned_face))
+            except ValueError as error:
+                continue
         return {"result": image_list}
     else:
         unaligned_img = deserialize(Item.image)
         aligned_face = align_face(unaligned_img)
         ser_iamge = serialize(aligned_face)
         return {"result": ser_iamge}
-
